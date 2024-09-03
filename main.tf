@@ -1,4 +1,12 @@
+data "aws_ecs_cluster" "this" {
+  count = var.create_ecs_cluster == false && var.existing_ecs_cluster == true ? 1 : 0
+
+  cluster_name = var.name
+}
+
 resource "aws_ecs_cluster" "main" {
+  count = var.create_ecs_cluster == true ? 1 : 0
+
   name = var.name
 
   setting {
@@ -10,7 +18,9 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_ecs_cluster_capacity_providers" "this" {
-  cluster_name = aws_ecs_cluster.main.name
+  count = var.create_ecs_cluster == true ? 1 : 0
+
+  cluster_name = aws_ecs_cluster.main.0.name
 
   capacity_providers = var.capacity_providers
 

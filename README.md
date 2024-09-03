@@ -5,8 +5,8 @@ Terraform module which provides an ECS cluster powered by AWS Fargate.
 
 ```hcl
 module "ecs_cluster" {
-  source             = "brunordias/ecs-cluster/aws"
-  version            = "~> 2.0.0"
+  source             = "instantstack/ecs-cluster/aws"
+  version            = "~> 1.0.0"
 
   name               = "terraform-ecs-test"
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]
@@ -45,6 +45,7 @@ No modules.
 |------|------|
 | [aws_ecs_cluster.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster) | resource |
 | [aws_ecs_cluster_capacity_providers.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_cluster_capacity_providers) | resource |
+| [aws_ecs_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecs_cluster) | data source |
 
 ## Inputs
 
@@ -52,7 +53,9 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_capacity_providers"></a> [capacity\_providers](#input\_capacity\_providers) | List of one or more capacity providers to associate with the cluster. Valid values also include FARGATE and FARGATE\_SPOT. | `list(any)` | <pre>[<br>  "FARGATE",<br>  "FARGATE_SPOT"<br>]</pre> | no |
 | <a name="input_container_insights"></a> [container\_insights](#input\_container\_insights) | Enable Container Insights. Value values are enabled and disabled. | `string` | `"disabled"` | no |
+| <a name="input_create_ecs_cluster"></a> [create\_ecs\_cluster](#input\_create\_ecs\_cluster) | Whether to create a ECS Cluster | `bool` | `true` | no |
 | <a name="input_default_capacity_provider_strategy"></a> [default\_capacity\_provider\_strategy](#input\_default\_capacity\_provider\_strategy) | The default capacity provider strategy configuration block. | `map(any)` | `null` | no |
+| <a name="input_existing_ecs_cluster"></a> [existing\_ecs\_cluster](#input\_existing\_ecs\_cluster) | Indicates whether to use an existing ECS Cluster. | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the cluster. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to all resources. | `map(string)` | `{}` | no |
 

@@ -26,3 +26,15 @@ variable "default_capacity_provider_strategy" {
   default     = null
   description = "The default capacity provider strategy configuration block."
 }
+
+variable "create_ecs_cluster" {
+  type        = bool
+  default     = true
+  description = "Whether to create a ECS Cluster"
+}
+
+variable "existing_ecs_cluster" {
+  type        = bool
+  default     = false
+  description = "Indicates whether to use an existing ECS Cluster."
+}
